@@ -26,7 +26,7 @@ namespace Steeltoe.Extensions.Logging.Test
 {
     public class DynamicLoggingBuilderTest
     {
-        private static readonly Dictionary<string, string> appsettings = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> Appsettings = new Dictionary<string, string>()
         {
             ["Logging:IncludeScopes"] = "false",
             ["Logging:Console:LogLevel:Default"] = "Information",
@@ -68,7 +68,7 @@ namespace Steeltoe.Extensions.Logging.Test
         public void DynamicLevelSetting_WorksWith_ConsoleFilters()
         {
             // arrange
-            var configuration = new ConfigurationBuilder().AddInMemoryCollection(appsettings).Build();
+            var configuration = new ConfigurationBuilder().AddInMemoryCollection(Appsettings).Build();
             var services = new ServiceCollection()
                 .AddLogging(builder =>
                 {
@@ -98,7 +98,7 @@ namespace Steeltoe.Extensions.Logging.Test
         public void AddConsole_Works_WithAddConfiguration()
         {
             // arrange
-            var configuration = new ConfigurationBuilder().AddInMemoryCollection(appsettings).Build();
+            var configuration = new ConfigurationBuilder().AddInMemoryCollection(Appsettings).Build();
             var services = new ServiceCollection()
                 .AddLogging(builder =>
                 {
@@ -119,7 +119,7 @@ namespace Steeltoe.Extensions.Logging.Test
         public void AddDynamicConsole_Works_WithAddConfiguration()
         {
             // arrange
-            var configuration = new ConfigurationBuilder().AddInMemoryCollection(appsettings).Build();
+            var configuration = new ConfigurationBuilder().AddInMemoryCollection(Appsettings).Build();
             var services = new ServiceCollection()
                 .AddLogging(builder =>
                 {
@@ -140,7 +140,7 @@ namespace Steeltoe.Extensions.Logging.Test
         public void DynamicLevelSetting_ParmLessAddDynamic_NotBrokenByAddConfiguration()
         {
             // arrange
-            var configuration = new ConfigurationBuilder().AddInMemoryCollection(appsettings).Build();
+            var configuration = new ConfigurationBuilder().AddInMemoryCollection(Appsettings).Build();
             var services = new ServiceCollection()
                 .AddLogging(builder =>
                 {
@@ -168,7 +168,7 @@ namespace Steeltoe.Extensions.Logging.Test
         public void AddDynamicConsole_WithIDynamicMessageProcessor_CallsProcessMessage()
         {
             // arrange
-            var configuration = new ConfigurationBuilder().AddInMemoryCollection(appsettings).Build();
+            var configuration = new ConfigurationBuilder().AddInMemoryCollection(Appsettings).Build();
             var services = new ServiceCollection()
                 .AddSingleton<IDynamicMessageProcessor, TestDynamicMessageProcessor>()
                 .AddLogging(builder =>
@@ -194,7 +194,7 @@ namespace Steeltoe.Extensions.Logging.Test
         public void DynamicLevelSetting_ParmLessAddDynamic_AddsConsoleOptions()
         {
             // arrange
-            var configuration = new ConfigurationBuilder().AddInMemoryCollection(appsettings).Build();
+            var configuration = new ConfigurationBuilder().AddInMemoryCollection(Appsettings).Build();
             var services = new ServiceCollection()
                 .AddLogging(builder =>
                 {
@@ -216,7 +216,7 @@ namespace Steeltoe.Extensions.Logging.Test
         public void AddDynamicConsole_AddsAllLoggerProviders()
         {
             // arrange
-            var configuration = new ConfigurationBuilder().AddInMemoryCollection(appsettings).Build();
+            var configuration = new ConfigurationBuilder().AddInMemoryCollection(Appsettings).Build();
             var services = new ServiceCollection()
                 .AddSingleton<IDynamicMessageProcessor, TestDynamicMessageProcessor>()
                 .AddLogging(builder =>
@@ -240,7 +240,7 @@ namespace Steeltoe.Extensions.Logging.Test
         public void AddDynamicConsole_AddsLoggerProvider_DisposeTwiceSucceeds()
         {
             // arrange
-            var configuration = new ConfigurationBuilder().AddInMemoryCollection(appsettings).Build();
+            var configuration = new ConfigurationBuilder().AddInMemoryCollection(Appsettings).Build();
             var services = new ServiceCollection()
                 .AddSingleton<IDynamicMessageProcessor, TestDynamicMessageProcessor>()
                 .AddLogging(builder =>
