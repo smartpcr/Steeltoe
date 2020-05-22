@@ -26,11 +26,11 @@ strategy:
       imageName: ubuntu-latest
       skipFilter: '--filter "Category!=Integration&Category!=SkipOnLinux"'
     MacOS_Build_and_Test:
-      imageName: windows-latest
-      skipFilter: '--filter "Category!=Integration"'
-    Windows_Build_Test_and_Package:
       imageName: macOS-latest
       skipFilter: '--filter "Category!=Integration&Category!=SkipOnMacOS"'
+    Windows_Build_Test_and_Package:
+      imageName: windows-latest
+      skipFilter: '--filter "Category!=Integration"'
 pool:
   vmImage: $(imageName)
 
@@ -77,7 +77,7 @@ steps:
   inputs:
     command: test
     projects: src/Steeltoe.All.sln
-    arguments: '-c $(buildConfiguration) -maxcpucount:1 /p:CopyLocalLockFileAssemblies=true $(skipFilter) /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Include="[Steeltoe.*]*" /p:Exclude="[*.Test*]*" /p:UseSourceLink=true'
+    arguments: '-c $(buildConfiguration) -maxcpucount:1 /p:CopyLocalLockFileAssemblies=true $(skipFilter) /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Include="[Steeltoe.*]*" /p:Exclude="[*.Test*]*"'
     publishTestResults: true
     nobuild: true
 - pwsh: dotnet tool install -g dotnet-reportgenerator-globaltool; reportgenerator "-reports:**\coverage.opencover.xml" "-targetdir:$(Build.SourcesDirectory)\CodeCoverage" -reporttypes:Cobertura
