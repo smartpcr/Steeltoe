@@ -30,7 +30,8 @@ namespace Steeltoe.CircuitBreaker.Hystrix.Test
             {
                 Assert.True(HystrixRequestContext.IsCurrentThreadInitialized);
                 return Task.FromResult<int>(1);
-            };
+            }
+
             var life = new TestLifecyecle();
             var reqContext = new HystrixRequestContextMiddleware(Del, life);
             HttpContext context = new DefaultHttpContext();

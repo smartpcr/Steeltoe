@@ -23,20 +23,22 @@ namespace Steeltoe.Common.Net.Test
         internal string _password;
         internal string _networkpath;
         internal bool _shouldConnect;
+        internal bool _cancelledConnection = false;
 
         public FakeMPR(bool shouldConnect = true)
         {
             _shouldConnect = shouldConnect;
         }
 
-        public int AddConnection(WindowsNetworkFileShare.NetResource netResource, string password, string username, int flags)
+        public int AddConnection(NetResource netResource, string password, string username, int flags)
         {
             throw new NotImplementedException();
         }
 
         public int CancelConnection(string name, int flags, bool force)
         {
-            return -1;
+            _cancelledConnection = true;
+            return 0;
         }
 
         public int GetLastError(out int error, out StringBuilder errorBuf, int errorBufSize, out StringBuilder nameBuf, int nameBufSize)
@@ -44,7 +46,7 @@ namespace Steeltoe.Common.Net.Test
             throw new NotImplementedException();
         }
 
-        public int UseConnection(IntPtr hwndOwner, WindowsNetworkFileShare.NetResource netResource, string password, string username, int flags, string lpAccessName, string lpBufferSize, string lpResult)
+        public int UseConnection(IntPtr hwndOwner, NetResource netResource, string password, string username, int flags, string lpAccessName, string lpBufferSize, string lpResult)
         {
             _networkpath = netResource.RemoteName;
             _username = username;

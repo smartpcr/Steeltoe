@@ -69,7 +69,7 @@ namespace Steeltoe.Stream.Binding
             }
             else
             {
-                var bindingTargets = bindingTarget == null ? new string[0] : bindingTarget.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                var bindingTargets = bindingTarget == null ? Array.Empty<string>() : bindingTarget.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var target in bindingTargets)
                 {
                     var binding = DoBindConsumer(inputChannel, name, binder, consumerOptions, target);
@@ -106,7 +106,7 @@ namespace Steeltoe.Stream.Binding
 
         public IBinding DoBindConsumerWithRetry<T>(T inputChan, string name, IBinder binder, IConsumerOptions consumerOptions, string bindingTarget)
         {
-             // TODO: Java code never stops retrying the bind
+            // TODO: Java code never stops retrying the bind
             do
             {
                 try

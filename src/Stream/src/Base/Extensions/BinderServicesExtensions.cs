@@ -41,7 +41,7 @@ namespace Steeltoe.Stream.Extensions
             services.AddBinderServices(binderConfigurations, configuration);
         }
 
-        internal static void AddBinderServices(this IServiceCollection services, IBinderConfigurations binderConfigurations,  IConfiguration configuration)
+        internal static void AddBinderServices(this IServiceCollection services, IBinderConfigurations binderConfigurations, IConfiguration configuration)
         {
             services.TryAddSingleton<IBinderFactory, DefaultBinderFactory>();
             services.ConfigureBinderServices(binderConfigurations, configuration);
@@ -110,7 +110,7 @@ namespace Steeltoe.Stream.Extensions
             var constr = type.GetConstructor(new Type[] { typeof(IConfiguration) });
             if (constr == null)
             {
-                constr = type.GetConstructor(new Type[] { });
+                constr = type.GetConstructor(Array.Empty<Type>());
             }
 
             return constr;
