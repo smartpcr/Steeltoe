@@ -26,13 +26,13 @@ namespace Steeltoe.CircuitBreaker.Hystrix.Test
         [Fact]
         public async void Invoke_CreatesContext_ThenDisposes()
         {
-            RequestDelegate del = (ctx) =>
+            static Task Del(HttpContext ctx)
             {
                 Assert.True(HystrixRequestContext.IsCurrentThreadInitialized);
                 return Task.FromResult<int>(1);
             };
             var life = new TestLifecyecle();
-            var reqContext = new HystrixRequestContextMiddleware(del, life);
+            var reqContext = new HystrixRequestContextMiddleware(Del, life);
             HttpContext context = new DefaultHttpContext();
             await reqContext.Invoke(context);
             Assert.False(HystrixRequestContext.IsCurrentThreadInitialized);
