@@ -27,7 +27,15 @@ namespace Steeltoe.CircuitBreaker.Hystrix.Metric.Consumer
         {
             if (@event.DidCommandExecute && @event.TotalLatency > -1)
             {
-                initialDistribution.RecordValue(@event.TotalLatency);
+                try
+                {
+                    initialDistribution.RecordValue(@event.TotalLatency);
+                }
+                catch (Exception ex)
+                {
+                    // Don't do anything
+                    Console.WriteLine(ex.Message + ex.StackTrace);
+                }
             }
 
             return initialDistribution;

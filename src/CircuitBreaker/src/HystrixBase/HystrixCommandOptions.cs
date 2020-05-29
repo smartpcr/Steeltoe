@@ -21,7 +21,7 @@ namespace Steeltoe.CircuitBreaker.Hystrix
     {
         internal const int Default_MetricsRollingStatisticalWindow = 10000; // default => statisticalWindow: 10000 = 10 seconds (and default of 10 buckets so each bucket is 1 second)
         internal const int Default_MetricsRollingStatisticalWindowBuckets = 10; // default => statisticalWindowBuckets: 10 = 10 buckets in a 10 second window so each bucket is 1 second
-        internal const int Default_CircuitBreakerRequestVolumeThreshold = 20; // default => statisticalWindowVolumeThreshold: 20 requests in 10 seconds must occur before statistics matter
+        internal const int Default_CircuitBreakerRequestVolumeThreshold = 2; // default => statisticalWindowVolumeThreshold: 20 requests in 10 seconds must occur before statistics matter
         internal const int Default_CircuitBreakerSleepWindowInMilliseconds = 5000; // default => sleepWindow: 5000 = 5 seconds that we will sleep before trying again after tripping the circuit
         internal const int Default_CircuitBreakerErrorThresholdPercentage = 50; // default => errorThresholdPercentage = 50 = if 50%+ of requests in 10 seconds are failures or latent then we will trip the circuit
         internal const bool Default_CircuitBreakerForceOpen = false; // default => forceCircuitOpen = false (we want to allow traffic)
